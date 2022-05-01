@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+main {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+}
+
+header {
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.chapter_container {
+    display:flex;
+    flex-direction: column;
+    width: 80vw;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.choices {
+    display:flex;
+    width: 90%;
+    justify-content: space-around;
+}
+
+.btn{
+    padding:20px ;
+    margin: 0 10px;
+}
+.btn:hover {
+    font-weight: bold;
+    cursor: pointer;
+}
