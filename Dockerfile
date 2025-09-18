@@ -3,6 +3,9 @@ FROM php:8.0.2-apache
 # Use Bullseye instead of Buster
 RUN sed -i 's/buster/bullseye/g' /etc/apt/sources.list
 
+# Fix broken keys by installing gnupg first
+RUN apt-get update && apt-get install -y gnupg
+
 # Add missing GPG keys
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0E98404D386FA1D9 \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6ED0E7B82643E131 \
