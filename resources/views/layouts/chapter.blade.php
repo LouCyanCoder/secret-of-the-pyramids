@@ -1,13 +1,17 @@
 @extends('layouts.main')
 
 @section('content')
+
     <div class='chapter container'>
         @if ($chapter->is_end == '1')
             <h2>Game Over</h2>
             <a href='/show/1'>Restart game</a>
         @else
             @if (isset($illustration->filename))
-                <img src="{{ asset('img/' . $illustration->filename) }}" alt="illustration">
+                <div class="chapter__illustration">
+
+                    <img src="{{ asset('img/' . $illustration->filename) }}" alt="illustration">
+                </div>
             @endif
 
             <div class="chapter__text">
@@ -16,13 +20,11 @@
             </div>
 
 
-            <div class='choices'>
+            <div class='chapter__choices mt-2'>
 
                 @foreach ($choices as $choice)
-                    <a href="./{{ $choice->goto_id }}">
-                        <button type='button' class='btn btn-sm'>
-                            {{ $choice->text }}
-                        </button>
+                    <a href="./{{ $choice->goto_id }}" class="btn btn-sm" role="button">
+                        {{ $choice->text }}
                     </a>
                 @endforeach
 
