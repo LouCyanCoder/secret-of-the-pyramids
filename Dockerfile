@@ -1,5 +1,7 @@
-# Use PHP 8.0.2 with Apache
 FROM php:8.0.2-apache
+
+# Use Bullseye instead of Buster
+RUN sed -i 's/buster/bullseye/g' /etc/apt/sources.list
 
 # Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
@@ -15,15 +17,13 @@ WORKDIR /var/www/html
 # Copy Laravel project files
 COPY . .
 
-# Set correct permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html
-
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install Laravel dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Expose port 80
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html
+
 EXPOSE 80
